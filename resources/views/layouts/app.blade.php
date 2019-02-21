@@ -1,17 +1,3 @@
- <?php
- use App\Ulogin;
-if(session()->get('id')){
-
-                $select=Ulogin::select("*")-> where('id','=',session()->get('id'))->first();
-              }
-              else{
-
-                echo "error";
-              }
-
-              
-            ?>
-
 <!DOCTYPE html>
 
 <html>
@@ -61,7 +47,7 @@ if(session()->get('id')){
   </div>
   <!-- /Preloader -->
 
-   @include('inc.nav_bar')
+   @include('inc.navbar')
 
 
   <!-- Main Content -->
@@ -74,13 +60,12 @@ if(session()->get('id')){
    
 
    
-     @include('inc.search')
+  
  
 
  
   <!-- jQuery -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/css/bower_components/jquery/dist/jquery.min.js"></script>
 
   <!-- Hexagon Progress -->
   <script type="text/javascript" src="/css/bower_components/HexagonProgress/jquery.hexagonprogress.min.js"></script>

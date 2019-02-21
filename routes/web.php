@@ -15,15 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware'=> 'checkuser'], function(){
-	
-	Route::get('/user_profile', 'UloginController@UserProfile');
-Route::get('/home', 'UloginController@home');
-});
+Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::resource('/user','UloginController');
-Route::post('/user_login','UloginController@login');
-Route::get('/user_reg', function () {
-    return view('user_reg');
-});
-Route::get('/logout', 'UloginController@logout');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/profile/{id}', 'HomeController@profile');
+Route::get('/logout', 'HomeController@logout');

@@ -41,7 +41,7 @@
   </div>
   <!-- /Preloader -->
 
-   @include('inc.nav_bar')
+   @include('inc.navbar')
 
 
  
@@ -56,9 +56,9 @@
         <div>
           <div class="container align-center">
 
-    @yield('content')
+          @yield('content')
 
- </div>
+          </div>
         </div>
       </div>
     </div>
@@ -69,8 +69,6 @@
    
 
    
-     @include('inc.search')
- 
 
  
   <!-- jQuery -->
