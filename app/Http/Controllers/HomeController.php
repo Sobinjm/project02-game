@@ -42,4 +42,10 @@ class HomeController extends Controller
                  return redirect('/profile');
              }
     }
+    public function profile_success(){
+        echo "profile";
+    }
+       public function profile_edit(){
+        return view('auth.profile_edit');
+    }
 }

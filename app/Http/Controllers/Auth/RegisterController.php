@@ -71,7 +71,6 @@ class RegisterController extends Controller
             'mobile'=>$data['mobile'],
             'status'=>$data['status'],
             'dob'=>'-',
-            'userImage'=>'-',
             'city'=>'-',
             'country'=>'-',
             'aboutMe'=>'-',

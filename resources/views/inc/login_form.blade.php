@@ -1,4 +1,5 @@
 <div class="youplay-form">
+    <h1>Login</h1>
                     <form method="POST" action="{{ route('login') }}" autocomplete="none">
                         @csrf
                          @if ($errors->has('email'))

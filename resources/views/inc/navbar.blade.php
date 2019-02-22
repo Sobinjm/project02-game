@@ -142,7 +142,6 @@
                     </a>
             <div class="dropdown-menu">
               <ul role="menu">
-                <li><a href="#">Documentation</a>
                 </li>
                 <!-- <li><a href="http://themeforest.net/item/youplay-game-template-based-on-bootstrap/11306207?ref=_nK">Purchase</a> -->
                 </li>
@@ -150,8 +149,7 @@
 
                 <li><a href="/profile/{{Auth::user()->id}}">Profile <span class="badge pull-right bg-warning">13</span></a>
                 </li>
-                <li><a href="cart.html">My Cart <span class="badge pull-right bg-default">3</span></a>
-                </li>
+              
                 <li class="divider"></li>
 
                 <li><a href="{{ route('logout') }}">LogOut</a>

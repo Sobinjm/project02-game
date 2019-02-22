@@ -20,4 +20,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/profile/{id}', 'HomeController@profile');
+Route::get('/profile', 'HomeController@profile_success');
+Route::get('/profile_edit', 'HomeController@profile_edit');
 Route::get('/logout', 'HomeController@logout');
+Route::get('/admin', 'adminController@index');
+Route::resource('/weeklymatch', 'weeklymatchController');
