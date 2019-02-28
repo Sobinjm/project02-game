@@ -14,6 +14,7 @@ class CreateWeeklymatchesTable extends Migration
     public function up()
     {
         Schema::create('weeklymatches', function (Blueprint $table) {
+            $table->string('galleryId');
             $table->bigIncrements('id');
             $table->string('m_title');
             $table->string('m_type');
@@ -21,6 +22,7 @@ class CreateWeeklymatchesTable extends Migration
             $table->text('rules');
             $table->string('time_zone');
             $table->text('prize');
+          
             $table->text('result');
             $table->string('video');
             $table->string('team_type');
@@ -29,6 +31,7 @@ class CreateWeeklymatchesTable extends Migration
             $table->string('categories');
             $table->string('tagline');
             $table->bigInteger('entry_fee');
+            $table->string('m_day');
             $table->timestamps();
         });
     }

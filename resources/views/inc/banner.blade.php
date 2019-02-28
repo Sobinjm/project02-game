@@ -27,7 +27,7 @@
       <div class="info">
         <div>
           <div class="container">
-            <h1>Killer Zone: <!--<br> Reaper of Souls --></h1>
+            <h1>KILLERZONE: <!--<br> Reaper of Souls --></h1>
             <em>"Hungry on kill..? Supply it with the necessary."</em>
             <br>
             <br>
@@ -35,6 +35,11 @@
             <a class="btn btn-lg" href="#!">Enroll Now</a>
           </div>
         </div>
-      </div>
+        
+        @foreach ($poster as $poster)
+
+          {{$poster['galleryId']}}
+        
+        @endforeach
     </section>
     <!-- /Banner -->

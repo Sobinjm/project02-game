@@ -3,32 +3,8 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous">
 </script>
 
-
 <h1>hi</h1><div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader -->
-            <!-- ============================================================== -->
-            {{-- <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="page-header">
-                        <h2 class="pageheader-title">Blank Pageheader </h2>
-                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Pages</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Blank Pageheader</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            <!-- ============================================================== -->
-            <!-- end pageheader -->
-            <!-- ============================================================== -->
 
             @foreach(['danger','warning','success','info'] as $msg)
 
@@ -38,7 +14,7 @@ crossorigin="anonymous">
                   <div class="col-md-12">
                     
                     <div id="error">
-                      <p class="alert alert-{{$msg}}"   >{{Session::get('alert-'.$msg)}}<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <a href="/admin" > show poster</a> </p>
+                      <p class="alert alert-{{$msg}}"   >{{Session::get('alert-'.$msg)}}<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> </p>
                     </div>
                   </div>
 
@@ -49,7 +25,7 @@ crossorigin="anonymous">
           @endforeach
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h3 class="text-center">Add Weekly Match</h3>
+                    <h3 class="text-center">Edit Weekly Match</h3>
 
                     <div class="row">
 
@@ -68,62 +44,121 @@ crossorigin="anonymous">
                                               </ul>
                                             </div>
                                             @endif
-                                        <form rule="form" action="/weeklymatch" method="POST" files=true  enctype="multipart/form-data">
+                                        <form rule="form" action="/weeklymatch/update/{{$matchedit['id']}}" method="POST" files=true  enctype="multipart/form-data">
                                             @csrf
+
+                                            <div class="row form-group" >
+                                                <?php
+                                    
+                                            
+                                            $dirname1 = "images/poster/banner/".$matchedit['galleryId']."/";
+                                               
+                                            $images1 = glob($dirname1."*.jpg");
+                                                
+                                            $dirname2= "images/poster/smallbanner/".$matchedit['galleryId']."/";
+                                        
+                                            $images2 = glob($dirname2."*.jpg");
+
+                                             
+                                           ?>
+                                            
+                                      
+                                           
+                                          
+                                           
+                                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <span>Banner</span>
+                                                        @if($images1==!NULL)
+                                                    <div class="card">
+                                                        <img class="card-img-top img-fluid" src="{{ asset($images1[0]) }}" alt="Card image cap">
+                                                        <div class="card-body">
+
+                                                         
+                                                        <a href="/image/delete/1/{{$matchedit['galleryId']}}">  <span class="btn btn-danger" >delete</span></a>  
+                                                       
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                           
+                                              
+                                           
+                                                
+                                                
+                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <span>SubBanner</span>
+                                                        @if($images2==!NULL)
+                                                    <div class="card">
+                                                        <img class="card-img-top img-fluid" src="{{ asset($images2[0]) }}" alt="Card image cap">
+                                                        <div class="card-body">
+
+                                                         
+                                                        <a href="/image/delete/2/{{$matchedit['galleryId']}}">  <span class="btn btn-danger" >delete</span></a>  
+                                                       
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div> 
+                                              
+                                          
+                                            </div>
+
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Match Title</label>
-                                                <input id="inputText3" type="text" class="form-control" name="m_title" value="{{ old('m_title') }}">
+                                            <input id="inputText3" type="text" class="form-control" name="m_title"  value="{{$matchedit['m_title']}}">
                                             </div>
                                             <div class="form-group">
                                                     <label for="inputText3" class="col-form-label">Match Type</label>
-                                                    <input id="inputText3" type="text" class="form-control" name="m_type" value="{{ old('m_type') }}">
+                                                    <input id="inputText3" type="text" class="form-control" name="m_type" value="{{$matchedit['m_type']}}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">Match Description</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">{{ old('description') }}</textarea>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">{{$matchedit['description']}}
+                                                        </textarea>
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">Match Rules</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="rules">{{ old('rules') }}</textarea>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="rules">{{$matchedit['rules']}}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Time Zone</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="time_zone" value="{{ old('time_zone') }}">
+                                                        <input id="inputText3" type="text" class="form-control" name="time_zone" value="{{$matchedit['time_zone']}}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Prize</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="prize" value="{{ old('prize') }}">
+                                                        <input id="inputText3" type="text" class="form-control" name="prize" value="{{$matchedit['prize']}}">
                                                 </div>
-                                                {{-- <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1">Match Rules</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="rules"></textarea>
-                                                </div> --}}
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Match results</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="result">{{$matchedit['result']}}</textarea>
+                                                </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Team Type</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="team_type" value="{{ old('team_type') }}">
+                                                        <input id="inputText3" type="text" class="form-control" name="team_type" value="{{$matchedit['team_type']}}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Member Type</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="member_type" value="{{ old('member_type') }}">
+                                                        <input id="inputText3" type="text" class="form-control" name="member_type" value="{{$matchedit['member_type']}}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Categories</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="categories" value="{{ old('categories') }}">
+                                                        <input id="inputText3" type="text" class="form-control" name="categories" value="{{$matchedit['categories']}}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Match Tag line</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="tagline" value="{{ old('tagline') }}">
+                                                        <input id="inputText3" type="text" class="form-control" name="tagline" value="{{$matchedit['tagline']}}">
                                                 </div>         
                                             <div class="form-group">
                                                 <label for="inputText4" class="col-form-label">Entry Fee</label>
-                                                <input id="inputText4" type="number" class="form-control" placeholder="Numbers" name="entry_fee" value="{{ old('entry_fee') }}">
+                                                <input id="inputText4" type="number" class="form-control" placeholder="Numbers" name="entry_fee" value="{{$matchedit['entry_fee']}}">
                                             </div>
                                             
                                             
                                             <div class="form-group">
+                                                    <label for="inputText4" class="col-form-label"> Image</label>
                                                         <label for="input-select"> Match Day</label>
                                                         <select class="form-control" id="input-select" name="m_day">
-                                                            <option>Select Days</option>
+                                                            <option value="{{$matchedit['m_day']}}">{{$matchedit['m_day']}}</option>
 
 
                                                             <script>
@@ -149,19 +184,26 @@ crossorigin="anonymous">
 
                                                         </select>
                                                     </div>
+
+
+                                                    
+
                                             <div class="form-group">
-                                            <label for="inputText4" class="col-form-label">Add Image</label>
+                                            <label for="inputText4" class="col-form-label">Add banner</label>
                                             <div class="input-group control-group increment" >
-                                                <input type="file" name="filename[]" class="form-control">
+                                                <input type="file" name="filename1" class="form-control">
                                                 <div class="input-group-btn"> 
-                                                  <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                                  {{-- <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button> --}}
                                                 </div>
                                               </div>
-                                              <div class="clone " hidden>
+                                              <input type="hidden" name="galleryId" value="{{$matchedit['galleryId']}}">
+                                              <div class="clone " >
+                                                    <label for="inputText4" class="col-form-label">Add sub banner</label>
                                                 <div class="control-group input-group" style="margin-top:10px">
-                                                  <input type="file" name="filename[]" class="form-control">
+                                                    
+                                                  <input type="file" name="filename2" class="form-control">
                                                   <div class="input-group-btn"> 
-                                                    <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                                    {{-- <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button> --}}
                                                   </div>
                                                 </div>
                                               </div>
@@ -169,7 +211,10 @@ crossorigin="anonymous">
                                                     <input id="inputText4" type="submit" class="btn btn-info" name="Add" >
                                                    
                                         </form>
+
                                     </div>
+
+                                   
                                 </div>
                             </div>
                         </div>
@@ -177,6 +222,7 @@ crossorigin="anonymous">
                 </div>
             </div>
         </div>
+    
      
         <script>
             $(document).ready(function() {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\weeklymatch;
 class HomeController extends Controller
 {
     /**
@@ -23,10 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $poster['poster']=weeklymatch::all();
+        return view('home',$poster);
     }
 
-
+   
       public function logout(Request $request){
         $request->session()->flush();
         return redirect('/login');

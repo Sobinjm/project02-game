@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\admin;
+use App\weeklymatch;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,8 +15,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.adminhome');
+
+        $show['show']=weeklymatch::all();
+        return view('admin.adminhome',$show);
     }
+    public function welcome()
+    {
+        $poster['poster']=weeklymatch::all();
+        return view('welcome',$poster);
+    }
+
 
     /**
      * Show the form for creating a new resource.

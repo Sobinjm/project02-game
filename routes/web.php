@@ -11,12 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     $poster['poster']=weeklymatch::all();
+//     return view('welcome');
+// });
 
 Auth::routes();
 Auth::routes(['verify' => true]);
+Route::get('/', 'AdminController@welcome');
+Route::post('/weeklymatch/update/{id}', 'weeklymatchController@matchupdate');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/profile/{id}', 'HomeController@profile');
@@ -25,3 +28,12 @@ Route::get('/profile_edit', 'HomeController@profile_edit');
 Route::get('/logout', 'HomeController@logout');
 Route::get('/admin', 'adminController@index');
 Route::resource('/weeklymatch', 'weeklymatchController');
+Route::get('/addmatch', 'weeklymatchController@addmatch');
+Route::get('/weekshow', 'weeklymatchController@weekshow');
+Route::get('/delete/{id}', 'weeklymatchController@delete');
+Route::get('/match_edit/{id}', 'weeklymatchController@matchedit');
+Route::get('/match/details/{id}', 'weeklymatchController@matchdetails');
+Route::get('/image/delete/1/{galleryId}', 'weeklymatchController@imagedelete1');
+Route::get('/image/delete/2/{galleryId}', 'weeklymatchController@imagedelete2');
+
+
