@@ -34,20 +34,44 @@ class HomeController extends Controller
         return redirect('/login');
     }
 
-    public function profile($id){
+    public function profile(){
 
-             $ProfileStatus=User::select("status")->where ('id',$id)->first();
-             if(intval($ProfileStatus->status)==0){
-                return redirect('/profile_edit');
-             }
-             else{
-                 return redirect('/profile');
-             }
+        return view('auth.profile');
     }
-    public function profile_success(){
-        echo "profile";
-    }
-       public function profile_edit(){
-        return view('auth.profile_edit');
+   
+    public function userupdate(Request $request)
+        {
+
+    
+                if($user=User::find($request->id)){
+                //    $image=$request->profile;
+                    if($request->hasfile('profile')){
+                        
+                    $name=$request->id.'.'.$request->profile->getClientOriginalExtension();
+                        $request->profile->move(public_path('images/user'), $name);
+                        $user->userImage=$name;
+                        
+                    }
+
+                    $user->dob=$request->dob;
+                    $user->city=$request->city;
+                    $user->country=$request->country;
+                    $user->aboutMe=$request->aboutme;
+                    $user->status=$request->status;
+                    if($user->save()){
+                        return redirect('/profile');
+                    }
+
+                   
+
+                }
+
+                else{
+                    echo "row not selected";
+                }
+        
+
+     
+
     }
 }

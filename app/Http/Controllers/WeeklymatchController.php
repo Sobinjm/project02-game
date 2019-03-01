@@ -283,4 +283,22 @@ class WeeklymatchController extends Controller
             return redirect()->back();
 
      }
+     public function activestatus($id){
+         $find['find']=weeklymatch::find($id);
+         $check=$find['find']['post_active'];
+
+         if($check==1){
+            $find=weeklymatch::find($id);
+             $find->post_active="0";
+             $find->save();
+             return redirect()->back();
+         }
+         else{
+            $find=weeklymatch::find($id);
+             $find->post_active="1";
+             $find->save();
+             return redirect()->back();
+         }
+        // print_r($find);
+     }
 }

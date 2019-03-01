@@ -63,7 +63,7 @@
 
         <div class="col-md-9">
 
-          <ul class="pagination pagination-sm mt-0">
+          {{-- <ul class="pagination pagination-sm mt-0">
             <li class="active">
               <a href="#">General</a>
             </li>
@@ -75,150 +75,97 @@
             </li>
             <li>
               <a href="#">Notifications</a>
-            </li>
-          </ul>
-
-          <form action="#">
-            <h3>Change Password:</h3>
-            <div class="form-horizontal mt-30 mb-40">
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="cur_password">Current Password:</label>
-                <div class="col-sm-10">
-                  <div class="youplay-input">
-                    <input type="password" id="cur_password" placeholder="Current Password">
+            </li>s
+          </ul> --}}
+          <form id="form1" action="user/update"  enctype="multipart/form-data"  method="POST">
+            @csrf
+              <h3>Update Your Profile</h3>
+              <div class="container youplay-user">
+                  <div class="angled-img ">
+                    <div class="img">
+                      <img src="images/user/{{auth::user()->userImage}}" alt="" id="blah" >
+                    </div>
+                  
                   </div>
+                
+                  <div class="user-data">
+                      <input type='file' id="imgInp" name="profile" />
+                   
                 </div>
               </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="new_password">New Password:</label>
-                <div class="col-sm-10">
-                  <div class="youplay-input">
-                    <input type="password" id="new_password" placeholder="New Password">
+      
+                <h3>Date of Birth</h3>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cur_password">Select your data birth:</label>
+                    <div class="col-sm-10">
+                      <div class="youplay-input">
+                      <input type="date" id="dob" name="dob" required value="{{auth::user()->dob}}">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Change Password</button>
-                </div>
-              </div>
-            </div>
 
-            <h3>Email:</h3>
-            <div class="form-horizontal mt-30 mb-40">
-              <div class="form-group">
-                <label class="control-label col-sm-2">Current Email:</label>
-                <div class="col-sm-10">
-                  nk*******@gmail.com
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="new_email">New Email:</label>
-                <div class="col-sm-10">
-                  <div class="youplay-input">
-                    <input type="email" id="new_email" placeholder="New Email">
+                  <h3>City</h3>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cur_password">Enter Your City</label>
+                    <div class="col-sm-10">
+                      <div class="youplay-input">
+                        <input type="text" id="city" name="city" required value="{{auth::user()->city}}">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Change Email</button>
-                </div>
-              </div>
-            </div>
 
-            <h3>Phone Number:</h3>
-            <div class="form-horizontal mt-30 mb-40">
-              <div class="form-group">
-                <label class="control-label col-sm-2">Current Phone:</label>
-                <div class="col-sm-10">
-                  +1 *** ** ** 11
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Change Phone</button>
-                </div>
-              </div>
-            </div>
-
-            <h3>Regional Settings:</h3>
-            <div class="form-horizontal mt-30 mb-40">
-              <div class="form-group">
-                <label class="control-label col-sm-2">Language:</label>
-                <div class="col-sm-10">
-                  <div class="youplay-select">
-                    <select>
-                      <option>Azərbaycan dili</option>
-                      <option>Bahasa Indonesia</option>
-                      <option>Bosanski</option>
-                      <option>Dansk</option>
-                      <option>Deutsch</option>
-                      <option>Eesti</option>
-                      <option selected>English</option>
-                      <option>Español</option>
-                      <option>Esperanto</option>
-                      <option>Français</option>
-                      <option>Hrvatski</option>
-                      <option>Italiano</option>
-                      <option>Kiswahili</option>
-                      <option>Latviešu</option>
-                      <option>Lietuvių</option>
-                      <option>Magyar</option>
-                      <option>Moldovenească</option>
-                      <option>Nederlands</option>
-                      <option>Norsk</option>
-                      <option>O‘zbek</option>
-                      <option>Polski</option>
-                      <option>Português</option>
-                      <option>Română</option>
-                      <option>Shqip</option>
-                      <option>Slovenščina</option>
-                      <option>Suomi</option>
-                      <option>Svenska</option>
-                      <option>Tagalog</option>
-                      <option>Tiếng Việt</option>
-                      <option>Türkmen</option>
-                      <option>Türkçe</option>
-                      <option>Čeština</option>
-                      <option>Ελληνικά</option>
-                      <option>Адыгэбзэ</option>
-                      <option>Беларуская</option>
-                      <option>Български</option>
-                      <option>ГIалгIай мотт</option>
-                      <option>Ирон</option>
-                      <option>Монгол</option>
-                      <option>Русский</option>
-                      <option>Српски</option>
-                      <option>Українська</option>
-                      <option>ภาษาไทย</option>
-                      <option>日本語</option>
-                      <option>臺灣話</option>
-                      <option>한국어</option>
-                      <option>پنجابی</option>
-                    </select>
+                  <h3>Country</h3>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cur_password">Enter Your Contry</label>
+                    <div class="col-sm-10">
+                      <div class="youplay-input">
+                        <input type="text" id="country" name="country" required value="{{auth::user()->country}}">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Save Regional Settings</button>
-                </div>
-              </div>
-            </div>
 
-            <h3>Appearance:</h3>
-            <div class="form-horizontal mt-30 mb-40">
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="youplay-checkbox">
-                    <input type="checkbox" name="appearance" id="appearance">
-                    <label for="appearance">Use Large Fonts</label>
+                  <h3>About Me</h3>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cur_password">Abut Me</label>
+                    <div class="col-sm-10">
+                      <div class="youplay-input">
+                        <textarea id="" cols="30" rows="10" name="aboutme">{{auth::user()->aboutMe}}</textarea>
+                       
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
+            
+              <input type="hidden" value="1" name="status">
+                <input type="hidden" value="{{auth::user()->id}}" name="id">
+                <div class="form-group" >
+                    <div >
+                      <button type="submit" name="update" class="btn btn-succes">update</button>
+                     
+                    </div>
+                  </div>
           </form>
+          <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous">
+</script>
+          <script>
+             function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+          </script>
+         
 
         </div>
 
@@ -245,3 +192,5 @@
       </div>
 
     </div>
+  </div>
+</div>

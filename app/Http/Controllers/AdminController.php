@@ -91,4 +91,31 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function login(Request $request)
+    {
+        $username=$request->username;
+        $password=$request->password;
+
+        $this->validate($request, [
+            'username'=>'required',
+            'password'=>'required',
+            
+
+    ]);
+
+        if($username=="admin" && $password=="admin"){
+            $request->session()->put('username',"admin");
+             return redirect('/admin');
+        }
+        else{
+            $request->session()->flash('alert-danger','Username / Passwor Error!');
+        return redirect()->back(); 
+        }
+    }
+    public function logout(Request $request){
+        
+        $request->session()->flush();
+        return redirect('/admin');
+    }
 }
