@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('dob');
             $table->string('mobile');
+            $table->string('mobile_code');
+            $table->string('mobile_status');
             $table->string('userImage');
             $table->string('city');
             $table->string('country');

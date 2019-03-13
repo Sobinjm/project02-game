@@ -20,3 +20,7 @@
         </div>
 <div class="youplay-form">
 @endsection
+@section('content2')
+@include('inc.footer')
+    
+@endsection

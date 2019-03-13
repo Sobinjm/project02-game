@@ -102,7 +102,10 @@ crossorigin="anonymous">
                                               
                                           
                                             </div>
-
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Game Id</label>
+                                            <input id="inputText3" type="text" class="form-control" name="game_id"  value="{{$matchedit['game_id']}}">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Match Title</label>
                                             <input id="inputText3" type="text" class="form-control" name="m_title"  value="{{$matchedit['m_title']}}">
@@ -139,10 +142,6 @@ crossorigin="anonymous">
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Member Type</label>
                                                         <input id="inputText3" type="text" class="form-control" name="member_type" value="{{$matchedit['member_type']}}">
-                                                </div>
-                                                <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Categories</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="categories" value="{{$matchedit['categories']}}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Match Tag line</label>

@@ -1,16 +1,21 @@
- <!-- Latest News -->
+@php
+use Carbon\Carbon;    
+@endphp
+
+<!-- Latest News -->
  <h2 class="container h1">Latest News</h2>
  <section class="youplay-news container">
    <!-- Single News Block -->
+
 @foreach ($poster as $poster)
-    
+
 
   
         <?php
+    $matchday=$poster['m_day'];
+    $date = Carbon::parse('next '.$matchday.'')->toDateString();
 
-    
-    $dirname = "images/user/".$poster['galleryId']."/";
-
+    $dirname = "images/poster/smallbanner/".$poster['galleryId']."/";
     $images = glob($dirname."*.jpg");
    
    ?>
@@ -22,7 +27,7 @@
    <div class="news-one">
      <div class="row vertical-gutter">
        <div class="col-md-4">
-         <a href="blog-post-1.html" class="angled-img">
+         <a href="/match-details/{{$poster['id']}}" class="angled-img">
            <div class="img">
              <img src='{{ asset($image) }}' alt="">
            </div>
@@ -32,8 +37,8 @@
        </div>
        <div class="col-md-8">
          <div class="clearfix">
-           <h3 class="h2 pull-left m-0"><a href="blog-post-1.html">{{$poster['m_title']}}</a></h3>
-           <span class="date pull-right"><i class="fa fa-calendar"></i> {{$poster['m_day']}}</span>
+           <h3 class="h2 pull-left m-0"><a href="/match-details/{{$poster['id']}}">{{$poster['m_title']}}</a></h3>
+         <span class="date pull-right"><i class="fa fa-calendar"></i> {{$poster['m_day']}} {{$date}}</span>
          </div>
          <div class="tags">
            <i class="fa fa-tags"></i>  <a href="#">Bloodborne</a>, <a href="#">first try</a>, <a href="#">first boss problem</a>, <a href="#">newbie game</a>
@@ -42,11 +47,11 @@
            <p>
            {{$poster['description']}}
            </p>
-           <p>
-             Sum expectantes. Ego hodie expectantes. Expectantes, et misit unum de pueris Gus interficere. Et suus vos. Nescio quis, qui est bonus usus liberi ad Isai? Qui nosti ... Quis dimisit filios ad necem ... hmm? Gus!
-           </p>
+           {{-- <p>
+            {{$poster['destribtion']}}
+           </p> --}}
          </div>
-         <a href="blog-post-1.html" class="btn read-more pull-left">Read More</a>
+        <a href="/match-details/{{$poster['id']}}" class="btn read-more pull-left">Read More</a>
        </div>
      </div>
    </div>

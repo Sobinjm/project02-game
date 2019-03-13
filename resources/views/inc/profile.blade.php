@@ -83,8 +83,12 @@
                     <p>Mobile</p>
                   </td>
                   <td>
-                    <p>+91- {{auth::user()->mobile}}</p>
-                  </td>
+                    <p>+91- {{auth::user()->mobile}} @if(auth::user()->mobile_status==0)
+                                                          <a href="/mob_verify/{{auth::user()->id}}"><i class="fa fa-warning" style="color:red"></i></a> 
+                                                          @else
+                                                         <i class="fa fa-check-circle-o" style="color:green"></i>
+                                                          @endif  
+                    </td></p>
                 </tr>
                 <tr>
                   <td>

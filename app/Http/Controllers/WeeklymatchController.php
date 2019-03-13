@@ -38,12 +38,13 @@ class WeeklymatchController extends Controller
     public function store(Request $request)
     {
      
-       
-        
-        
+      
+ 
+
 
      
         $this->validate($request, [
+            'game_id'=>'required',
             'm_title'=>'required',
             'm_type'=>'required',
             'description'=>'required',
@@ -52,7 +53,6 @@ class WeeklymatchController extends Controller
             'prize'=>'required',
             'team_type'=>'required',
             'member_type'=>'required',
-            'categories'=>'required',
             'tagline'=>'required',
             'entry_fee'=>'required',
             'm_day'=>'required',
@@ -76,7 +76,10 @@ class WeeklymatchController extends Controller
         $name=rand().'.'.$file[0]->getClientOriginalExtension();
            $file[0]->move(public_path('images/poster/banner/'.$galleryId), $name);
            $file[1]->move(public_path('images/poster/smallbanner/'.$galleryId), $name);
-           $data[] = $name;  
+           $data[] = $name; 
+           
+           
+        //    loop image
     //    foreach($request->file('filename') as $image)
     //    {
         //    $name=rand().'.'.$image->getClientOriginalExtension();
@@ -84,11 +87,17 @@ class WeeklymatchController extends Controller
         //    $data[] = $name;  
           
     //    }
+        // loopimagre
+
 
     }
 
-        $match =new weeklymatch;
+    // $date=$request->m_date;
+    // $unixTimestamp = strtotime($date);
+    // $dayOfWeek = date("l", $unixTimestamp);
 
+        $match =new weeklymatch;
+        $match->game_id=$request->game_id;
         $match->galleryId= $galleryId;
         $match->m_title=$request->m_title;
         $match->m_type=$request->m_type;
@@ -101,10 +110,10 @@ class WeeklymatchController extends Controller
         $match->team_type=$request->team_type;
         $match->member_type=$request->member_type;
         $match->rating='-';
-        $match->categories=$request->categories;
         $match->tagline=$request->tagline;
         $match->entry_fee=$request->entry_fee;
         $match->m_day=$request->m_day;
+       
 
         if($match->save()){
            
@@ -220,7 +229,7 @@ class WeeklymatchController extends Controller
 
     }
     $match =weeklymatch::find($id);
-
+    $match->game_id=$request->game_id;
     $match->galleryId= $galleryId;
 
 
@@ -235,7 +244,6 @@ class WeeklymatchController extends Controller
     $match->team_type=$request->team_type;
     $match->member_type=$request->member_type;
     $match->rating='-';
-    $match->categories=$request->categories;
     $match->tagline=$request->tagline;
     $match->entry_fee=$request->entry_fee;
     $match->m_day=$request->m_day;
@@ -301,4 +309,5 @@ class WeeklymatchController extends Controller
          }
         // print_r($find);
      }
+     
 }

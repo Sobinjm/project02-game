@@ -63,8 +63,13 @@
       </div>
     </div>
     <!-- /Banner -->
-
   </section>
+<div>
+    <section class="content-wrap ">
+       @yield('content2')
+    </section>
+</div>
+ 
   <!-- /Main Content -->
    
 

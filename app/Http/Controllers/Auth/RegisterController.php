@@ -64,11 +64,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+
+        $digits = 4;
+$mobile_code= rand(pow(10, $digits-1), pow(10, $digits)-1);
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'mobile'=>$data['mobile'],
+            'mobile_code'=>$mobile_code,
             'status'=>$data['status'],
             'dob'=>'-',
             'city'=>'-',

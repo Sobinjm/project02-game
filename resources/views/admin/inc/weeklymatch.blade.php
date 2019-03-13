@@ -71,6 +71,10 @@ crossorigin="anonymous">
                                         <form rule="form" action="/weeklymatch" method="POST" files=true  enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">GameId</label>
+                                                <input id="inputText3" type="text" class="form-control" name="game_id" value="{{ old('game_id') }}">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Match Title</label>
                                                 <input id="inputText3" type="text" class="form-control" name="m_title" value="{{ old('m_title') }}">
                                             </div>
@@ -105,10 +109,6 @@ crossorigin="anonymous">
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Member Type</label>
                                                         <input id="inputText3" type="text" class="form-control" name="member_type" value="{{ old('member_type') }}">
-                                                </div>
-                                                <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Categories</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="categories" value="{{ old('categories') }}">
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Match Tag line</label>
@@ -149,19 +149,23 @@ crossorigin="anonymous">
 
                                                         </select>
                                                     </div>
+                                                    {{-- <div class="form-group">
+                                                        <label for="inputText4" class="col-form-label">Match Date</label>
+                                                        <input id="inputText4" type="date" class="form-control" placeholder="Numbers" name="m_date" value="{{ old('entry_fee') }}">
+                                                    </div> --}}
                                             <div class="form-group">
                                             <label for="inputText4" class="col-form-label">Add Image</label>
                                             <div class="input-group control-group increment" >
                                                 <input type="file" name="filename[]" class="form-control">
                                                 <div class="input-group-btn"> 
-                                                  <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                                  {{-- <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button> --}}
                                                 </div>
                                               </div>
-                                              <div class="clone " hidden>
+                                              <div class="clone " >
                                                 <div class="control-group input-group" style="margin-top:10px">
                                                   <input type="file" name="filename[]" class="form-control">
                                                   <div class="input-group-btn"> 
-                                                    <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                                    {{-- <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button> --}}
                                                   </div>
                                                 </div>
                                               </div>

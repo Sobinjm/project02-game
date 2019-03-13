@@ -1,0 +1,48 @@
+
+    <!-- Banner -->
+
+    <?php
+
+    // print_r($poster);
+    $dirname = "images/poster/banner/".$poster[0]['galleryId']."/";
+    $images = glob($dirname."*.jpg");
+   
+   ?>
+    <section class="youplay-banner banner-top youplay-banner-parallax">
+      <div class="image" style="background-image: url({{ asset($images[0]) }})">
+      </div>
+      @if(isset($login_success))
+ @if(count($login_success)>=0)
+
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                      @foreach($login_success as $error)
+
+                    <strong>Warning!</strong> {{$error->name}} <br>
+
+
+                    @endforeach
+                </div>
+
+                @endif
+                @endif
+
+
+
+               
+
+      <div class="info">
+        <div>
+          <div class="container">
+            <h1>{{$poster[0]['m_title']}} <!--<br> Reaper of Souls --></h1>
+          <em>"{{$poster[0]['tagline']}}.Match date on {{$poster[0]['m_date']}},{{$poster[0]['m_day']}}"</em>
+            <br>
+            <br>
+            <br>
+          <a class="btn btn-lg" href="/login">Enroll Now</a>
+          </div>
+        </div>
+
+    </section>
+    <!-- /Banner -->

@@ -1,7 +1,15 @@
 
     <!-- Banner -->
+
+    <?php
+
+    // print_r($poster);
+    $dirname = "images/poster/banner/".$poster[0]['galleryId']."/";
+    $images = glob($dirname."*.jpg");
+   
+   ?>
     <section class="youplay-banner banner-top youplay-banner-parallax">
-      <div class="image" style="background-image: url('/images/bg-6.jpg')">
+      <div class="image" style="background-image: url({{ asset($images[0]) }})">
       </div>
       @if(isset($login_success))
  @if(count($login_success)>=0)
@@ -27,19 +35,20 @@
       <div class="info">
         <div>
           <div class="container">
-            <h1>KILLERZONE: <!--<br> Reaper of Souls --></h1>
-            <em>"Hungry on kill..? Supply it with the necessary."</em>
+            <h2>{{$poster[0]['m_title']}} <!--<br> Reaper of Souls --></h2>
+          <em>"{{$poster[0]['tagline']}}.Match date on {{$poster[0]['m_date']}},{{$poster[0]['m_day']}}"</em>
             <br>
             <br>
             <br>
-            <a class="btn btn-lg" href="#!">Enroll Now</a>
+            @guest
+            <a class="btn btn-lg" href="/login">Enroll Now</a>
+          
+           @else
+           <a class="btn btn-lg" href="/enroll_now/{{$poster[0]['id']}}/{{auth::user()->id}}">Enroll Now</a>
+           
+          @endguest
           </div>
         </div>
-        
-        @foreach ($poster as $poster)
 
-          {{$poster['galleryId']}}
-        
-        @endforeach
     </section>
     <!-- /Banner -->

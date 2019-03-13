@@ -4,7 +4,10 @@
 
    
    
-  
+   <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+   crossorigin="anonymous">
+   </script>
     <div class="dashboard-wrapper">
         <div class="container-fluid  dashboard-content">
             <div class="row">
@@ -83,6 +86,21 @@
                             </td>
                       
                         </tr>
+                        
+    <script>    
+            $(document).ready(function(){
+                    $('input[type="checkbox"]').click(function(){
+                        if($(this).prop("checked") == true){
+                            // alert("Checkbox is checked.");
+                            $(location).attr('href', '/active/{{$show['id']}}')
+                        }
+                        else if($(this).prop("checked") == false){
+                          $(location).attr('href', '/active/{{$show['id']}}')
+                        }
+                    });
+                });
+            </script>
+          
                       
                         @endforeach
                     </tbody>
@@ -95,22 +113,5 @@
     </div>
     
     
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous">
-    </script>
-    <script>    
-    $(document).ready(function(){
-            $('input[type="checkbox"]').click(function(){
-                if($(this).prop("checked") == true){
-                    // alert("Checkbox is checked.");
-                    $(location).attr('href', '/active/{{$show['id']}}')
-                }
-                else if($(this).prop("checked") == false){
-                  $(location).attr('href', '/active/{{$show['id']}}')
-                }
-            });
-        });
-    </script>
-  
+   
    

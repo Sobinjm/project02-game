@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\admin;
 use App\weeklymatch;
 use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
     /**
@@ -21,7 +20,11 @@ class AdminController extends Controller
     }
     public function welcome()
     {
-        $poster['poster']=weeklymatch::all();
+        
+        // $poster['poster']=weeklymatch::all();
+        $poster['poster'] = weeklymatch::orderBy('m_day', 'ASC')->get();
+
+       
         return view('welcome',$poster);
     }
 

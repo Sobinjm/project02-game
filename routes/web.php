@@ -39,6 +39,13 @@ Route::get('/active/{id}', 'weeklymatchController@activestatus');
 Route::post('/weeklymatch/update/{id}', 'weeklymatchController@matchupdate');
 
 
+Route::get('/match-details/{id}', 'HomeController@matchdetails');
+Route::get('/enroll_now/{id}/{uid}', 'HomeController@enrollnow');
+Route::get('/mob_verify/{id}',  'smsController@mobverify');
+Route::post('/mob_verify',  'smsController@mob_verify');
+Route::post('/match_register',  'HomeController@match_register');
+
+
 Route::get('/profile', 'HomeController@profile');
 Route::get('/logout', 'HomeController@logout');
 Route::get('/admin', 'AdminController@index');
@@ -46,3 +53,12 @@ Route::post('/user/update', 'HomeController@userupdate' );
 Route::get('/user-settings',function(){
     return view('auth.usersetting');
 });
+
+
+Route::post('/enroll', 'enrollController@enrollnow');
+Route::post('/paytm-callback', 'enrollController@paytmCallback');
+
+Route::get('event-registration', 'enrollController@register');
+Route::post('payment', 'enrollController@order');
+Route::get('/transaction-status/{orderid}','enrollController@statusCheck');
+Route::post('/txn_again','enrollController@txn_again');
