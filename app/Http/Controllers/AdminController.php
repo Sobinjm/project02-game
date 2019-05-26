@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\admin;
 use App\weeklymatch;
+use App\splmatch;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
@@ -16,16 +17,18 @@ class AdminController extends Controller
     {
 
         $show['show']=weeklymatch::all();
-        return view('admin.adminhome',$show);
+        $show2['show2']=splmatch::all();
+
+        return view('admin.adminhome',$show,$show2);
     }
     public function welcome()
     {
         
         // $poster['poster']=weeklymatch::all();
-        $poster['poster'] = weeklymatch::orderBy('m_day', 'ASC')->get();
-
-       
-        return view('welcome',$poster);
+        // $poster['poster'] = weeklymatch::orderBy('m_day', 'ASC')->get();
+        $poster['poster']=weeklymatch::where('post_active', '1' )->get();
+        $splposter['splposter']=splmatch::all();       
+        return view('welcome')->with($poster)->with($splposter);
     }
 
 

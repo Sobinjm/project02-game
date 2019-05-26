@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\weeklymatch;
+use App\splmatch;
 use Illuminate\Http\Request;
-use Illuminate\Filesystem\Filesystem;
 use File;
 
-class WeeklymatchController extends Controller
+class SplmatchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class WeeklymatchController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -37,6 +36,57 @@ class WeeklymatchController extends Controller
      */
     public function store(Request $request)
     {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\splmatch  $splmatch
+     * @return \Illuminate\Http\Response
+     */
+    public function show(splmatch $splmatch)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\splmatch  $splmatch
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(splmatch $splmatch)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\splmatch  $splmatch
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, splmatch $splmatch)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\splmatch  $splmatch
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(splmatch $splmatch)
+    {
+        //
+    }
+
+    public  function splmatch(Request $request){
+
+        
      
       
  
@@ -55,7 +105,7 @@ class WeeklymatchController extends Controller
             'member_type'=>'required',
             'tagline'=>'required',
             'entry_fee'=>'required',
-            'm_day'=>'required',
+            'm_date'=>'required',
             'filename' => 'required',
             'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
@@ -67,15 +117,15 @@ class WeeklymatchController extends Controller
     if($request->hasfile('filename'))
     {
         $galleryId=rand();
-        $path1 = public_path().'/images/poster/banner/' . $galleryId;
-        $path2 = public_path().'/images/poster/smallbanner/' . $galleryId;
+        $path1 = public_path().'/images/poster/splmatch/banner/' . $galleryId;
+        $path2 = public_path().'/images/poster/splmatch/smallbanner/' . $galleryId;
         
         File::makeDirectory($path1, $mode = 0777, true, true);
         File::makeDirectory($path2, $mode = 0777, true, true);
         $file=$request->file('filename');
         $name=rand().'.'.$file[0]->getClientOriginalExtension();
-           $file[0]->move(public_path('images/poster/banner/'.$galleryId), $name);
-           $file[1]->move(public_path('images/poster/smallbanner/'.$galleryId), $name);
+           $file[0]->move(public_path('images/poster/splmatch/banner/'.$galleryId), $name);
+           $file[1]->move(public_path('images/poster/splmatch/smallbanner/'.$galleryId), $name);
            $data[] = $name; 
            
            
@@ -96,7 +146,7 @@ class WeeklymatchController extends Controller
     // $unixTimestamp = strtotime($date);
     // $dayOfWeek = date("l", $unixTimestamp);
 
-        $match =new weeklymatch;
+        $match =new splmatch;
         $match->game_id=$request->game_id;
         $match->galleryId= $galleryId;
         $match->m_title=$request->m_title;
@@ -112,7 +162,7 @@ class WeeklymatchController extends Controller
         $match->rating='-';
         $match->tagline=$request->tagline;
         $match->entry_fee=$request->entry_fee;
-        $match->m_day=$request->m_day;
+        $match->m_date=$request->m_date;
        
 
         if($match->save()){
@@ -124,115 +174,36 @@ class WeeklymatchController extends Controller
         else{
             echo"faildf";
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\weeklymatch  $weeklymatch
-     * @return \Illuminate\Http\Response
-     */
-    public function show(weeklymatch $weeklymatch)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\weeklymatch  $weeklymatch
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(weeklymatch $weeklymatch)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\weeklymatch  $weeklymatch
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, weeklymatch $weeklymatch)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\weeklymatch  $weeklymatch
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(weeklymatch $id)
-    {
-        
-    }
-    public function delete($id)
-    {
-        $delete=weeklymatch::find($id);
-        // echo $delete['galleryId'];
-        if($delete->delete()){
-            // echo $delete['galleryId'];
-
-            File::deleteDirectory(public_path('images/poster/banner/'.$delete['galleryId']));
-            File::deleteDirectory(public_path('images/poster/smallbanner/'.$delete['galleryId']));
-
-            session()->flash('alert-danger','Post was deleted !');
-            return redirect()->back();
-        }
-    }
-    public function addmatch()
-    {
-        return view('admin.layouts.addmatch');
-    }
-    public function addsplmatch()
-    {
-        return view('admin.layouts.addsplmatch');
-    }
-    public function matchedit($id)
-    {
-        $edit['matchedit']=weeklymatch::find($id);
-            // print_r($edit['matchedit']['galleryId']);
-            $galleryId=$edit['matchedit']['galleryId'];
-        // $images = File::allFiles(public_path('images/user/'.$galleryId));
-        return view('admin.layouts.matchedit',$edit);
-
-    
-
 
     }
-
-    public function matchupdate(Request $request , $id){
+    public function splmatchupdate(Request $request , $id){
         $galleryId=$request->galleryId;
-        $path1 = public_path().'/images/poster/banner/' . $galleryId;
-        $path2 = public_path().'/images/poster/smallbanner/' . $galleryId;
+        $path1 = public_path().'/images/poster/splmatch/banner/' . $galleryId;
+        $path2 = public_path().'/images/poster/splmatch/smallbanner/' . $galleryId;
         $file=$request->file('filename');
        
     if($request->hasfile('filename1') && $request->hasfile('filename2') )
     {
         $name1=rand().'.'.$request->filename1->getClientOriginalExtension();
         $name2=rand().'.'.$request->filename2->getClientOriginalExtension();
-        $request->filename1->move(public_path('images/poster/banner/'.$galleryId), $name1);
-        $request->filename2->move(public_path('images/poster/smallbanner/'.$galleryId), $name2);
+        $request->filename1->move(public_path('images/poster/splmatch/banner/'.$galleryId), $name1);
+        $request->filename2->move(public_path('images/poster/splmatch/smallbanner/'.$galleryId), $name2);
 
 
     }
     else if($request->hasfile('filename1')){
         $name=rand().'.'.$request->filename1->getClientOriginalExtension();
-        $request->filename1->move(public_path('images/poster/banner/'.$galleryId), $name);
+        $request->filename1->move(public_path('images/poster/splmatch/banner/'.$galleryId), $name);
      
 
     }
     else if($request->hasfile('filename2')){
         $name=rand().'.'.$request->filename2->getClientOriginalExtension();
-        $request->filename2->move(public_path('images/poster/smallbanner/'.$galleryId), $name);
+        $request->filename2->move(public_path('images/poster/splmatch/smallbanner/'.$galleryId), $name);
  
 
     }
-    $match =weeklymatch::find($id);
+    $match =splmatch::find($id);
     $match->game_id=$request->game_id;
     $match->galleryId= $galleryId;
 
@@ -250,7 +221,7 @@ class WeeklymatchController extends Controller
     $match->rating='-';
     $match->tagline=$request->tagline;
     $match->entry_fee=$request->entry_fee;
-    $match->m_day=$request->m_day;
+    // $match->m_date=$request->m_day;
 
     if($match->save()){
        
@@ -262,21 +233,34 @@ class WeeklymatchController extends Controller
         echo"faildf";
     }
 }
-
-    public function weekshow()
+    public function delete($id)
     {
-        $show['show']=weeklymatch::all();
-        
-        return view('admin.layouts.weekshow',$show);
+        $delete=splmatch::find($id);
+        // echo $delete['galleryId'];
+        if($delete->delete()){
+            // echo $delete['galleryId'];
+
+            File::deleteDirectory(public_path('images/poster/splmatch/banner/'.$delete['galleryId']));
+            File::deleteDirectory(public_path('images/poster/splmatch/smallbanner/'.$delete['galleryId']));
+
+            session()->flash('alert-danger','Post was deleted !');
+            return redirect()->back();
+        }
     }
-    public function matchdetails($id)
+    public function splmatchedit($id)
     {
-        $matchdetails['matchdetails']=weeklymatch::find($id);
-        return view('admin.layouts.matchdetails', $matchdetails);
+        $edit['matchedit']=splmatch::find($id);
+            // print_r($edit['matchedit']['galleryId']);
+            $galleryId=$edit['matchedit']['galleryId'];
+        // $images = File::allFiles(public_path('images/user/'.$galleryId));
+        return view('admin.layouts.splmatch_edit',$edit);
+
+    
+
 
     }
-    public function imagedelete1(Request $request,$galleryId) {
-        $dirname1 = "images/poster/banner/".$galleryId."/";
+    public function splimagedelete1(Request $request,$galleryId) {
+        $dirname1 = "images/poster/splmatch/banner/".$galleryId."/";
                                                 
         $images = glob($dirname1."*.jpg");
             File::delete(public_path($images[0]));
@@ -285,8 +269,8 @@ class WeeklymatchController extends Controller
             return redirect()->back();
 
      }
-     public function imagedelete2(Request $request,$galleryId) {
-            $dirname2 = "images/poster/smallbanner/".$galleryId."/";
+     public function splimagedelete2(Request $request,$galleryId) {
+            $dirname2 = "images/poster/splmatch/smallbanner/".$galleryId."/";
                                                 
             $images = glob($dirname2."*.jpg");
                 File::delete(public_path($images[0]));
@@ -295,23 +279,4 @@ class WeeklymatchController extends Controller
             return redirect()->back();
 
      }
-     public function activestatus($id){
-         $find['find']=weeklymatch::find($id);
-         $check=$find['find']['post_active'];
-
-         if($check==1){
-            $find=weeklymatch::find($id);
-             $find->post_active="0";
-             $find->save();
-             return redirect()->back();
-         }
-         else{
-            $find=weeklymatch::find($id);
-             $find->post_active="1";
-             $find->save();
-             return redirect()->back();
-         }
-        // print_r($find);
-     }
-     
 }

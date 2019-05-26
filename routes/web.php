@@ -29,6 +29,7 @@ Route::get('/admin/logout', 'AdminController@logout');
 
 Route::resource('/weeklymatch', 'weeklymatchController');
 Route::get('/addmatch', 'weeklymatchController@addmatch');
+Route::get('/add_spl_match','weeklymatchController@addsplmatch');
 Route::get('/weekshow', 'weeklymatchController@weekshow');
 Route::get('/delete/{id}', 'weeklymatchController@delete');
 Route::get('/match_edit/{id}', 'weeklymatchController@matchedit');
@@ -37,6 +38,15 @@ Route::get('/image/delete/1/{galleryId}', 'weeklymatchController@imagedelete1');
 Route::get('/image/delete/2/{galleryId}', 'weeklymatchController@imagedelete2');
 Route::get('/active/{id}', 'weeklymatchController@activestatus');
 Route::post('/weeklymatch/update/{id}', 'weeklymatchController@matchupdate');
+
+
+Route::post('/spl_match','splmatchController@splmatch');
+Route::get('/delete_splmatch/{id}', 'splmatchController@delete');
+Route::get('/splmatch_edit/{id}', 'splmatchController@splmatchedit');
+Route::get('splmatch/image/delete/1/{galleryId}', 'splmatchController@splimagedelete1');
+Route::get('splmatch/image/delete/2/{galleryId}', 'splmatchController@splimagedelete2');
+Route::post('/splmatch/update/{id}', 'splmatchController@splmatchupdate');
+
 
 
 Route::get('/match-details/{id}', 'HomeController@matchdetails');
@@ -53,6 +63,10 @@ Route::post('/user/update', 'HomeController@userupdate' );
 Route::get('/user-settings',function(){
     return view('auth.usersetting');
 });
+Route::get('/user-status',function(){
+    return view('auth.gamestatus');
+});
+
 
 
 Route::post('/enroll', 'enrollController@enrollnow');

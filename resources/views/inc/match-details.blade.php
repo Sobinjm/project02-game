@@ -93,7 +93,7 @@ $subimages = glob($dirname."*.jpg");
                   <li><i class="fa fa-plus-circle"></i> Third Price
                     150 Rs.</li> --}}
 
-                    {{$details['rules']}}
+                    {!!$details['rules']!!}
                   {{-- <li><i class="fa fa-plus-circle"></i> Creature/Boss design</li> --}}
                 </ul>
               </div>

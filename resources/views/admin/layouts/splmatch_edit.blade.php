@@ -3,7 +3,7 @@
 @if(session()->get('username')==="admin"))  
 @include('admin.inc.header')
 @include('admin.inc.sidebar')
-@include('admin.inc.matchedit')
+@include('admin.inc.splmatch_edit')
 
     
 @else

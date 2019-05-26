@@ -5,6 +5,7 @@
     @include('admin.inc.header')
     @include('admin.inc.sidebar')
     @include('admin.inc.matche')
+    @include('admin.inc.splmatch')
 
 
 @else

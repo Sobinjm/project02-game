@@ -7,6 +7,8 @@ use App\User;
 use App\Enroll;
 use App\GamerDetails;
 use App\weeklymatch;
+use App\splmatch;
+
 class HomeController extends Controller
 {
     /**
@@ -27,13 +29,16 @@ class HomeController extends Controller
     public function index()
 
     {
+        // $poster['poster']=weeklymatch::where('post_active', '1' )->get();
 
        
-        $poster['poster']=weeklymatch::all();
+        // $poster['poster']=weeklymatch::all();
         // $poster['poster'] = weeklymatch::orderBy('m_day', 'ACS')->get();
+        $poster['poster']=weeklymatch::where('post_active', '1' )->get();
+        $splposter['splposter']=splmatch::all();       
+        return view('welcome')->with($poster)->with($splposter); 
 
-
-          return view('Home',$poster);
+        //   return view('Home',$poster);
     }
 
    
@@ -101,7 +106,7 @@ class HomeController extends Controller
         $enroll=Enroll::where([
             ['user_id',$uid],
             ['match_id',$game_id],
-            ['g_id',$id],
+            ['g_id',$id],['payment_status',!null]
         ])->get();
 $poster=weeklymatch::find($id);
         return view('enroll',[
@@ -216,6 +221,10 @@ $poster=weeklymatch::find($id);
         $enroll->match_type="1";
         $enroll->save();
         
+    }
+    public function userstatus()
+    {
+        return view('');
     }
 
     

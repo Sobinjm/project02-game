@@ -8,8 +8,7 @@
    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
    crossorigin="anonymous">
    </script>
-    <div class="dashboard-wrapper">
-        <div class="container-fluid  dashboard-content">
+
             <div class="row">
                
                 @foreach(['danger','warning','success','info'] as $msg)
@@ -32,8 +31,8 @@
     
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
-            <h5 class="card-header add_match">Weekly match info 
-             <a href="/addmatch">   <span class="btn btn-success btn-xs">Add New Post</span></a>
+            <h5 class="card-header add_match">Special match info 
+             <a href="/add_spl_match">   <span class="btn btn-success btn-xs">Add New Post</span></a>
             </h5>
             <div class="card-body">
                 <table class="table table-hover">
@@ -48,7 +47,7 @@
                     </thead>
                     <tbody>
     
-                      @foreach ($show as $show)
+                      @foreach ($show2 as $show)
                           
                     
                         <tr>
@@ -57,8 +56,8 @@
     
                             <td><a href="/match/details/{{$show['id']}}">{{ $show['m_title']}}</a></td>
                         <td>{{$show['m_day']}}</td>
-                        <td> <a href="/match_edit/{{$show['id']}}"> <span class="btn btn-info btn-xs">edit</span></a> 
-                              <a href="/delete/{{ $show['id']}}"><span class="btn btn-danger btn-xs">Delete</span></a>
+                        <td> <a href="/splmatch_edit/{{$show['id']}}"> <span class="btn btn-info btn-xs">edit</span></a> 
+                              <a href="/delete_splmatch/{{ $show['id']}}"><span class="btn btn-danger btn-xs">Delete</span></a>
                             </td>
                             <td> 
                                 {{-- <span class="btn btn-success" id="btnon" >on</span>
@@ -109,6 +108,10 @@
         </div>
     </div>
             </div>
+        </div>
+    </div>
+</div>
+</div>
     
     
    

@@ -5,13 +5,11 @@
       <div class="youplay-user-navigation">
         <div class="container">
           <ul>
-            <li><a href="user-activity.html">Activity</a>
+            <li><a href="/profile">Profile</a>
             </li>
-            <li><a href="user-profile.html">Profile</a>
+            <li><a href="/user-status">Game Status <span class="badge">6</span></a>
             </li>
-            <li><a href="user-messages.html">Messages <span class="badge">6</span></a>
-            </li>
-            <li class="active"><a href="user-settings.html">Settings</a>
+            <li class="active"><a href="/user-settings">Settings</a>
             </li>
           </ul>
         </div>

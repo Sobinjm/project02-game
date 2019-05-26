@@ -7,7 +7,9 @@
             <ul>
               {{-- <li><a href="user-activity.html">Activity</a>
               </li> --}}
-              <li class="active"><a href="user-profile.html">Profile</a>
+              <li class="active"><a href="/profile">Profile</a>
+              </li>
+              <li><a href="/user-status">Game Status <span class="badge">6</span></a>
               </li>
               {{-- <li><a href="user-messages.html">Messages <span class="badge">6</span></a>
               </li> --}}

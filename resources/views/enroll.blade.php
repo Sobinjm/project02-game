@@ -18,6 +18,7 @@
 
 @elseif(count($enroll)==true)
 <div>
+        {{print_r($enroll)}}
         already paid
 <a href="/transaction-status/{{ $enroll[0]['order_id'] }}">Check Status</a>
 
